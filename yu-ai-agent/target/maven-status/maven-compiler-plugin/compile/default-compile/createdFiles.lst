@@ -1,0 +1,10 @@
+com\aung\yuaiagent\demo\invoke\TestApiKey.class
+com\aung\yuaiagent\controller\BodyController.class
+com\aung\yuaiagent\controller\HelloworldController.class
+com\aung\yuaiagent\demo\invoke\ollamaAiInvoke.class
+com\aung\yuaiagent\dto\FileResp.class
+com\aung\yuaiagent\demo\invoke\LangChain4j.class
+com\aung\yuaiagent\config\ChatModelConfig.class
+com\aung\yuaiagent\demo\invoke\DashscopeApiCaller.class
+com\aung\yuaiagent\YuAiAgentApplication.class
+com\aung\yuaiagent\demo\invoke\sdkAiInvoke.class
