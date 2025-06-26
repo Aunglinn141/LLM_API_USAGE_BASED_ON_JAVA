@@ -8,7 +8,7 @@ spring:
   ai:
     alibaba:
       dashscope:
-        api-key: sk-2d138d462db944f6824f1875efdfda75
+        api-key: YOUR_DASHSCOPE_API_KEY
 
     ollama:
       base-url: http://localhost:11434
