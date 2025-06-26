@@ -1,1 +1,42 @@
-spring.application.name=yu-ai-agent
+spring:
+  application:
+    name : yu-ai-agent
+
+  main:
+    allow-bean-definition-overriding: true
+
+  ai:
+    alibaba:
+      dashscope:
+        chat:
+          option:
+            model: qwen_plus
+        api-key: YOUR_API_KEY
+
+    ollama:
+      base-url: http://localhost:11434
+      chat:
+        model: gemma3:1b
+
+server:
+  port: 8123
+  servlet:
+    context-path: /api
+
+# springdoc-openapi????
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+  api-docs:
+    path: /v3/api-docs
+  group-configs:
+    - group: 'default'
+      paths-to-match: '/**'
+      packages-to-scan: com.aung.yuaiagent.controller
+# knife4j???????????????
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn
