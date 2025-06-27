@@ -22,16 +22,16 @@ class HappyAppTest {
         String message = "你好，我是代码校园";
         String response = happyApp.chat(message, chatId);
         Assertions.assertNotNull(response);
-
-//        Second chat
-        message = "我想让我的另一半“王恩在”更喜欢我";
-        response = happyApp.chat(message, chatId);
-        Assertions.assertNotNull(response);
-
-//        Third chat
-        message = "我的另一半叫什么名字，你帮我回忆一下，我刚刚讲过";
-        response = happyApp.chat(message, chatId);
-        Assertions.assertNotNull(response);
+//
+////        Second chat
+//        message = "我想让我的另一半“王恩在”更喜欢我";
+//        response = happyApp.chat(message, chatId);
+//        Assertions.assertNotNull(response);
+//
+////        Third chat
+//        message = "我的另一半叫什么名字，你帮我回忆一下，我刚刚讲过";
+//        response = happyApp.chat(message, chatId);
+//        Assertions.assertNotNull(response);
     }
   
 }

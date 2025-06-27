@@ -1,8 +1,10 @@
-package com.aung.yuaiagent.demo.invoke;
+package com.aung.yuaiagent.controller;
 
 import com.alibaba.cloud.ai.dashscope.chat.DashScopeChatOptions;
+
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
+import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,7 +16,6 @@ public class HelloworldController {
   private static final String DEFAULT_PROMPT = "你是一个博学的智能聊天助手，请根据用户提问回答！";
 
   private final ChatClient dashScopeChatClient;
-
   public HelloworldController(ChatClient.Builder chatClientBuilder) {
     this.dashScopeChatClient = chatClientBuilder
         .defaultSystem(DEFAULT_PROMPT)

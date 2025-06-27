@@ -2,7 +2,7 @@ package com.aung.yuaiagent.demo.invoke;
 
 import dev.langchain4j.community.model.dashscope.QwenChatModel;
 
-public class LangcChain4j {
+public class LangChain4j {
     public static void main(String[] args) {
         QwenChatModel qwenChatModel = QwenChatModel.builder()
                 .apiKey(TestApiKey.API_KEY)
