@@ -1,6 +1,7 @@
 package com.aung.yuaiagent.app;
 
 
+import com.aung.yuaiagent.advisor.MyLoggerAdvisor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
@@ -24,7 +25,7 @@ public class HappyApp {
     public HappyApp(ChatModel dashScopeChatModel){
         ChatMemory chatmemory = new InMemoryChatMemory();
         chatClient = ChatClient.builder(dashScopeChatModel).defaultSystem(SYSTEM_PROMPT)
-                .defaultAdvisors(new MessageChatMemoryAdvisor(chatmemory),new SimpleLoggerAdvisor())
+                .defaultAdvisors(new MessageChatMemoryAdvisor(chatmemory),new MyLoggerAdvisor())
                 .build();
     }
     public String chat (String message, String chatID){
