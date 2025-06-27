@@ -33,5 +33,16 @@ class HappyAppTest {
 //        response = happyApp.chat(message, chatId);
 //        Assertions.assertNotNull(response);
     }
-  
+
+    @Test
+    void chatReport() {
+
+        String chatId = UUID.randomUUID().toString();
+
+//        first chat
+        String message = "你好，我是代码校园,我晚上睡不着怎么办，给我十条解决方案";
+        HappyApp.ActorsFilms actorsFilms = happyApp.chatReport(message, chatId);
+        System.out.println(actorsFilms);
+        Assertions.assertNotNull(actorsFilms);
+    }
 }

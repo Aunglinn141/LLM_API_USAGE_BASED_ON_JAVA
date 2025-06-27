@@ -2,15 +2,17 @@ package com.aung.yuaiagent.app;
 
 
 import com.aung.yuaiagent.advisor.MyLoggerAdvisor;
+import com.aung.yuaiagent.advisor.ReReadingAdvisor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
-import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
 import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.ai.chat.memory.InMemoryChatMemory;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 import static org.springframework.ai.chat.client.advisor.AbstractChatMemoryAdvisor.CHAT_MEMORY_CONVERSATION_ID_KEY;
 import static org.springframework.ai.chat.client.advisor.AbstractChatMemoryAdvisor.CHAT_MEMORY_RETRIEVE_SIZE_KEY;
@@ -25,7 +27,9 @@ public class HappyApp {
     public HappyApp(ChatModel dashScopeChatModel){
         ChatMemory chatmemory = new InMemoryChatMemory();
         chatClient = ChatClient.builder(dashScopeChatModel).defaultSystem(SYSTEM_PROMPT)
-                .defaultAdvisors(new MessageChatMemoryAdvisor(chatmemory),new MyLoggerAdvisor())
+                .defaultAdvisors(new MessageChatMemoryAdvisor(chatmemory),
+                        new MyLoggerAdvisor(),
+                        new ReReadingAdvisor())
                 .build();
     }
     public String chat (String message, String chatID){
@@ -41,5 +45,26 @@ public class HappyApp {
         }
         log.info("context:{}", content);
         return content;
+    }
+    record ActorsFilms(String actor, List<String> movies) {
+    }
+
+
+    /**
+     **making structural output and make a recording function
+     * @param message
+     * @param chatID
+     * @return
+     */
+    public ActorsFilms chatReport(String message, String chatID) {
+        ActorsFilms actorsFilms = chatClient.prompt()
+                .system(SYSTEM_PROMPT )
+                .user(message)
+                .advisors(spec -> spec.param(CHAT_MEMORY_CONVERSATION_ID_KEY, chatID)
+                        .param(CHAT_MEMORY_RETRIEVE_SIZE_KEY, 10))
+                .call()
+                .entity(ActorsFilms.class);
+        log.info("ActorFilms:{}", actorsFilms);
+        return actorsFilms;
     }
 }

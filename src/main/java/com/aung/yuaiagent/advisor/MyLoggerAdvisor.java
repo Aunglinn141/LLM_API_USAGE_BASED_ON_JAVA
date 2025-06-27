@@ -24,7 +24,7 @@ public class MyLoggerAdvisor implements CallAroundAdvisor, StreamAroundAdvisor {
 	}
 
 
-	/*
+	/**
 	** interception processing
 	* @param advisedRequest
 	* @return
