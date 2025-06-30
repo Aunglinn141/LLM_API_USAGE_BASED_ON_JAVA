@@ -18,8 +18,10 @@ import java.util.List;
 import static org.springframework.ai.chat.client.advisor.AbstractChatMemoryAdvisor.CHAT_MEMORY_CONVERSATION_ID_KEY;
 import static org.springframework.ai.chat.client.advisor.AbstractChatMemoryAdvisor.CHAT_MEMORY_RETRIEVE_SIZE_KEY;
 
+
 @Component
 @Slf4j
+
 public class HappyApp {
     private final ChatClient chatClient;
 
@@ -35,6 +37,13 @@ public class HappyApp {
                         new ReReadingAdvisor())
                 .build();
     }
+
+    /**
+     *
+     * @param message
+     * @param chatID
+     * @return
+     */
     public String chat (String message, String chatID){
         ChatResponse response = chatClient.prompt()
                 .user(message)
