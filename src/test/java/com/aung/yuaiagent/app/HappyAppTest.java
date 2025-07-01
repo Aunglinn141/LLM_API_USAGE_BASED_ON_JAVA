@@ -45,4 +45,22 @@ class HappyAppTest {
         System.out.println(actorsFilms);
         Assertions.assertNotNull(actorsFilms);
     }
+
+    @Test
+    void chatWithRag() {
+        String chatId = UUID.randomUUID().toString();
+        String message = "我的apple watch 连接不上iphone 了怎么办？给我一些建议";
+        String response = happyApp.chatWithRag(message, chatId);
+        System.out.println(response);
+        Assertions.assertNotNull(response);
+    }
+
+    @Test
+    void chatWithCloudRag() {
+        String chatId = UUID.randomUUID().toString();
+        String message = "我谈恋爱了！ 请给我一些建议";
+        String response = happyApp.chatWithCloudRag(message, chatId);
+        System.out.println(response);
+        Assertions.assertNotNull(response);
+    }
 }

@@ -84,7 +84,7 @@
         <dependency>
             <groupId>com.github.victools</groupId>
             <artifactId>jsonschema-generator</artifactId>
-            <version>4.38.0</version>
+            <version>4.38.0</version><!--the newest version -->
         </dependency>
 <!-- add kryo -->
         <dependency>
@@ -98,6 +98,7 @@
             <artifactId>spring-ai-markdown-document-reader</artifactId>
             <version>1.0.0-M6</version>
         </dependency>
+
 
     </dependencies>
 
