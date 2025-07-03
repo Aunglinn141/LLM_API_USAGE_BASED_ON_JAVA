@@ -1,4 +1,4 @@
-package com.aung.yuaiagent.config;
+package com.aung.yuaiagent.demo.rag;
 
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.document.Document;

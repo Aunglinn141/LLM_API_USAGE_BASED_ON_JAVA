@@ -4,6 +4,7 @@ package com.aung.yuaiagent.app;
 import com.aung.yuaiagent.advisor.MyLoggerAdvisor;
 import com.aung.yuaiagent.advisor.ReReadingAdvisor;
 import com.aung.yuaiagent.chat_memory.FileBasedChatMemory;
+import com.aung.yuaiagent.rag.QueryRewriter;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.client.ChatClient;
@@ -53,7 +54,12 @@ public class HappyApp {
      * @param chatID
      * @return
      */
+
+    @Resource
+    QueryRewriter queryRewriter;
+
     public String chat (String message, String chatID){
+        message = queryRewriter.doQueryRewrite(message);
         ChatResponse response = chatClient.prompt()
                 .user(message)
                 .advisors(spec -> spec.param(CHAT_MEMORY_CONVERSATION_ID_KEY, chatID)

@@ -18,9 +18,12 @@ public class happyAppVectorStoreConfig {
     @Resource
     HappyAppDocumentLoader happyAppDocumentLoader;
     @Autowired
-    private MyTokenTextSplitter myTokenTextSplitter;
-    @Autowired
-    private VectorStore vectorStore;
+    MyTokenTextSplitter myTokenTextSplitter;
+
+    @Resource
+    MyKeywordEnricher myKeywordEnricher;
+//    @Autowired
+//    private VectorStore vectorStore;
 
     @Bean
     VectorStore happyAppVectorStore(@Qualifier("dashscopeEmbeddingModel") EmbeddingModel embeddingModel) {
@@ -30,7 +33,13 @@ public class happyAppVectorStoreConfig {
         // read local file
         List<Document> documents = happyAppDocumentLoader.loaderMarkdownDocument();
 
-        simpleVectorStore.add(documents);
+        // customized split, recommend to use cloud service and manual split
+        List<Document> splitDocuments = myTokenTextSplitter.splitCustomized(documents);
+
+        //customized enrichment, auto full the ordinary keyword info
+        List<Document> enrichedDocuments = myKeywordEnricher.enrichDocuments(splitDocuments);
+
+        simpleVectorStore.add(enrichedDocuments);
         return simpleVectorStore;
     }
 
