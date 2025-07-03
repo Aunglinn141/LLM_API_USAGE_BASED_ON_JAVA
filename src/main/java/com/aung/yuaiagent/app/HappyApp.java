@@ -89,6 +89,12 @@ public class HappyApp {
         return actorsFilms;
     }
 
+    /**
+     * chat with local data
+     * @param message
+     * @param chatID
+     * @return
+     */
     public String chatWithRag (String message, String chatID){
         ChatResponse response = chatClient.prompt()
                 .user(message)
@@ -108,6 +114,12 @@ public class HappyApp {
     @Resource
     private Advisor happyAppRagCloudAdvisor;
 
+    /**
+     * chat with rag cloud
+     * @param message
+     * @param chatID
+     * @return
+     */
     public String chatWithCloudRag (String message, String chatID){
         ChatResponse response = chatClient.prompt()
                 .user(message)
@@ -119,6 +131,32 @@ public class HappyApp {
                 .chatResponse();
         String content = null;
         if(response != null){
+            content = response.getResult().getOutput().getText();
+        }
+        log.info("context:{}", content);
+        return content;
+    }
+
+    @Resource
+    private VectorStore pgVectorVectorStore;
+
+    /**
+     * chat with pgVector
+     * @param message
+     * @param chatID
+     * @return
+     */
+    public String chatWithpgVectorRag(String message, String chatID) {
+        ChatResponse response = chatClient.prompt()
+                .user(message)
+                .advisors(spec -> spec.param(CHAT_MEMORY_CONVERSATION_ID_KEY, chatID)
+                        .param(CHAT_MEMORY_RETRIEVE_SIZE_KEY, 10))
+                .advisors(new MyLoggerAdvisor())
+                .advisors(new QuestionAnswerAdvisor(pgVectorVectorStore))
+                .call()
+                .chatResponse();
+        String content = null;
+        if (response != null) {
             content = response.getResult().getOutput().getText();
         }
         log.info("context:{}", content);

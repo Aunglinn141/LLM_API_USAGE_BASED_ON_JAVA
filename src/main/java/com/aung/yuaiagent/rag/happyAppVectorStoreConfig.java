@@ -16,7 +16,7 @@ import java.util.List;
 public class happyAppVectorStoreConfig {
 
     @Resource
-    happyAppDocumentLoader happyAppDocumentLoader;
+    HappyAppDocumentLoader happyAppDocumentLoader;
     @Autowired
     private MyTokenTextSplitter myTokenTextSplitter;
     @Autowired

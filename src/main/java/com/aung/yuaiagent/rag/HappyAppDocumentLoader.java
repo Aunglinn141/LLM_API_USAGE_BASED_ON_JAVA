@@ -15,11 +15,11 @@ import java.util.List;
 
 @Component
 @Slf4j
-public class happyAppDocumentLoader {
+public class HappyAppDocumentLoader {
 
     private final ResourcePatternResolver resourcePatternResolver;
 
-    happyAppDocumentLoader(ResourcePatternResolver resourcePatternResolver) {
+    HappyAppDocumentLoader(ResourcePatternResolver resourcePatternResolver) {
         this.resourcePatternResolver = resourcePatternResolver;
     }
 
@@ -32,12 +32,17 @@ public class happyAppDocumentLoader {
         try{
             Resource[] resources = resourcePatternResolver.getResources("classpath:markdown/*.md");
             for(Resource resource : resources){
+                String fileName = resource.getFilename();
+                String status = fileName.substring(fileName.length()-5,fileName.length()-4);
+                String status2 = fileName.substring(fileName.indexOf("-"), fileName.lastIndexOf(".md"));
                 log.info("resource:{}",resource.getFilename());
                 MarkdownDocumentReaderConfig config =  MarkdownDocumentReaderConfig.builder()
                         .withHorizontalRuleCreateDocument(true)
                         .withIncludeCodeBlock(false)
                         .withIncludeBlockquote(false)
+                        //add file ordinary data and can add more data
                         .withAdditionalMetadata("filename",resource.getFilename())
+                        .withAdditionalMetadata("status",status)
                         .build();
                 MarkdownDocumentReader reader = new MarkdownDocumentReader(resource,config);
                 allDocuments.addAll(reader.get());
