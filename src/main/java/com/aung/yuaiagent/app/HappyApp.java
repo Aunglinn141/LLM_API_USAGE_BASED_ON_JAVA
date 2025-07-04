@@ -37,6 +37,15 @@ public class HappyApp {
     @Resource
     private VectorStore happyAppVectorStore;
 
+    @Resource
+    QueryRewriter queryRewriter;
+
+    @Resource
+    private VectorStore pgVectorVectorStore;
+
+    @Resource
+    private Advisor happyAppRagCloudAdvisor;
+
 
     public HappyApp(ChatModel dashScopeChatModel){
         String filedir  = System.getProperty("user.dir") + "/tmp/chat_memory";
@@ -56,8 +65,7 @@ public class HappyApp {
      * @return
      */
 
-    @Resource
-    QueryRewriter queryRewriter;
+
 
     public String chat (String message, String chatID){
         message = queryRewriter.doQueryRewrite(message);
@@ -119,8 +127,7 @@ public class HappyApp {
         log.info("context:{}", content);
         return content;
     }
-    @Resource
-    private Advisor happyAppRagCloudAdvisor;
+
 
     /**
      * chat with rag cloud
@@ -145,8 +152,7 @@ public class HappyApp {
         return content;
     }
 
-    @Resource
-    private VectorStore pgVectorVectorStore;
+
 
     /**
      * chat with pgVector

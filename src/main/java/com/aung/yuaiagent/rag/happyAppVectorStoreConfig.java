@@ -17,6 +17,7 @@ public class happyAppVectorStoreConfig {
 
     @Resource
     HappyAppDocumentLoader happyAppDocumentLoader;
+
     @Autowired
     MyTokenTextSplitter myTokenTextSplitter;
 

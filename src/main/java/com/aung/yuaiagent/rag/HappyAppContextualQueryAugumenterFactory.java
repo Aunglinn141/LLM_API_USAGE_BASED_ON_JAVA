@@ -15,7 +15,7 @@ public class HappyAppContextualQueryAugumenterFactory {
                                                         如有其他需要，可以联系 https://doubao.com 
                                                         """);
         return ContextualQueryAugmenter.builder()
-                .allowEmptyContext(true)
+                .allowEmptyContext(false)
                 .emptyContextPromptTemplate(promptTemplate)
                 .build();
     }
