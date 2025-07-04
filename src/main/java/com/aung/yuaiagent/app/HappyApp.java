@@ -4,6 +4,7 @@ package com.aung.yuaiagent.app;
 import com.aung.yuaiagent.advisor.MyLoggerAdvisor;
 import com.aung.yuaiagent.advisor.ReReadingAdvisor;
 import com.aung.yuaiagent.chat_memory.FileBasedChatMemory;
+import com.aung.yuaiagent.rag.HappyRagCustomAdvisorFactory;
 import com.aung.yuaiagent.rag.QueryRewriter;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
@@ -108,6 +109,7 @@ public class HappyApp {
                         .param(CHAT_MEMORY_RETRIEVE_SIZE_KEY, 10))
                 .advisors(new MyLoggerAdvisor())
                 .advisors(new QuestionAnswerAdvisor(happyAppVectorStore))
+                .advisors(HappyRagCustomAdvisorFactory.createHappyRagAdvisor(happyAppVectorStore, "已婚了"))
                 .call()
                 .chatResponse();
         String content = null;

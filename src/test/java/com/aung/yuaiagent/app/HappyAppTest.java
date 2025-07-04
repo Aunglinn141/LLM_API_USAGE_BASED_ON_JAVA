@@ -49,7 +49,7 @@ class HappyAppTest {
     @Test
     void chatWithRag() {
         String chatId = UUID.randomUUID().toString();
-        String message = "我的apple watch 连接不上iphone 了怎么办？给我一些建议";
+        String message = "我现在已婚了， 请给我一些建议";
         String response = happyApp.chatWithRag(message, chatId);
         System.out.println(response);
         Assertions.assertNotNull(response);

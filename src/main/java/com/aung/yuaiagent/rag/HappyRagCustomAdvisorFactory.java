@@ -3,6 +3,7 @@ package com.aung.yuaiagent.rag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.client.advisor.RetrievalAugmentationAdvisor;
 import org.springframework.ai.chat.client.advisor.api.Advisor;
+import org.springframework.ai.rag.generation.augmentation.ContextualQueryAugmenter;
 import org.springframework.ai.rag.retrieval.search.VectorStoreDocumentRetriever;
 import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.ai.vectorstore.filter.Filter;
@@ -24,11 +25,14 @@ public class HappyRagCustomAdvisorFactory {
         VectorStoreDocumentRetriever documentRetriever = VectorStoreDocumentRetriever.builder()
                 .vectorStore(vectorStore)
                 .filterExpression(expression)
-                .similarityThreshold(0.5)
-                .topK(3)
+                .similarityThreshold(0.3)
+                .topK(10)
                 .build();
 
-        return RetrievalAugmentationAdvisor.builder().documentRetriever(documentRetriever)
+        return RetrievalAugmentationAdvisor.builder()
+                .documentRetriever(documentRetriever)
+//                .queryAugmenter(ContextualQueryAugmenter.builder().allowEmptyContext(true).build())
+                .queryAugmenter(HappyAppContextualQueryAugumenterFactory.createInstance())
                 .build();
     }
 }
