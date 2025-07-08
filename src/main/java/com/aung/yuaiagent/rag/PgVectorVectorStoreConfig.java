@@ -21,7 +21,7 @@ public class PgVectorVectorStoreConfig {
     @Resource
     private HappyAppDocumentLoader happyAppDocumentLoader;
 
-    @Bean
+//    @Bean
     public VectorStore pgVectorVectorStore(JdbcTemplate jdbcTemplate,EmbeddingModel dashscopeEmbeddingModel) {
         PgVectorStore vectorStore =
                 PgVectorStore.builder(jdbcTemplate, dashscopeEmbeddingModel)

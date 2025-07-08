@@ -72,4 +72,26 @@ class HappyAppTest {
         System.out.println(response);
         Assertions.assertNotNull(response);
     }
+
+    @Test
+    void chatmessage(){
+        doChatWithTools("你好，请你帮我下载华侨大学的logo，并命名为“hqu.png”。");
+    }
+
+    @Test
+    void doChatWithTools(String message) {
+        String chatId = UUID.randomUUID().toString();
+        String response = happyApp.doChatWithTools(message, chatId);
+        System.out.println(response);
+        Assertions.assertNotNull(response);
+    }
+
+    @Test
+    void doChatWithMcp() {
+        String chatId = UUID.randomUUID().toString();
+        String message = "我现在在华侨大学厦门校区，请你给我介绍一下附近五公里内的美食。";
+        String response = happyApp.doChatWithMcp(message, chatId);
+        System.out.println(response);
+        Assertions.assertNotNull(response);
+    }
 }
