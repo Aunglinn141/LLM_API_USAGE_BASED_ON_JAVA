@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url : jdbc:postgresql://pgm-bp1zl45ugwt258pnlo.rwlb.rds.aliyuncs.com:5432/yu_ai_agent
+    username : yu_ai_agent
+    password : Thomas2701aung$
+  ai:
+    dashscope:
+      api-key: sk-2d138d462db944f6824f1875efdfda75
+      chat:
+        model: qwen_plus
+
+search-api:
+  api-key : An4U6nAwMRdKE4rRHUXTvUSp
+

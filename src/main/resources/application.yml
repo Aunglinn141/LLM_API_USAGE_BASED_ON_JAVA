@@ -23,20 +23,20 @@ spring:
 
     mcp:
       client:
-        enabled: true
-        name: my-mcp
-        version: 1.0.0
-        request-timeout: 30s
-        type: SYNC
-        sse:
-          connection:
-            server1:
-              url: http://localhost:8127
-#        stdio:
+#        enabled: true
+#        name: my-mcp
+#        version: 1.0.0
+#        request-timeout: 30s
+#        type: SYNC
+#        sse:
+#          connections:
+#            server1:
+#              url: http://localhost:8127
+        stdio:
 #          connection:
 #            server1:
 #              command: java -jar /Users/aunglinn/Downloads/ollama-1.0.0.jar
-#          servers-configuration: classpath:mcp-servers.json
+          servers-configuration: classpath:mcp-servers.json
 
 server:
   port: 8124

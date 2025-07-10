@@ -89,7 +89,7 @@ class HappyAppTest {
     @Test
     void doChatWithMcp() {
         String chatId = UUID.randomUUID().toString();
-        String message = "我现在在华侨大学厦门校区，请你给我介绍一下附近五公里内的美食。";
+        String message = "give me some pictures that can make me feeling pleasure to see";
         String response = happyApp.doChatWithMcp(message, chatId);
         System.out.println(response);
         Assertions.assertNotNull(response);
