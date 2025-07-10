@@ -1,14 +1,14 @@
 spring:
   datasource:
-    url : jdbc:postgresql://pgm-bp1zl45ugwt258pnlo.rwlb.rds.aliyuncs.com:5432/yu_ai_agent
+    url : YOUR_URL
     username : yu_ai_agent
-    password : Thomas2701aung$
+    password : YOUR_PW
   ai:
     dashscope:
-      api-key: sk-2d138d462db944f6824f1875efdfda75
+      api-key: YOUR_API_KEY
       chat:
         model: qwen_plus
 
 search-api:
-  api-key : An4U6nAwMRdKE4rRHUXTvUSp
+  api-key : YOUR_API_KEY
 
