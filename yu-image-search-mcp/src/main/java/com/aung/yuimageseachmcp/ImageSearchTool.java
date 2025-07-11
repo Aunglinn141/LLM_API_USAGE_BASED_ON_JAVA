@@ -19,7 +19,7 @@ public class ImageSearchTool {
 
     // pexels API_KEY;
 //    @Value("${pexels.api-key")
-    private static final String API_KEY = "YOUR API KEY";
+    private static final String API_KEY = "dUU9UYNEfukJAnEtEq1u5TEqLaCa8DyKvPIFpysWbHxbgDqHIO4P52ho";
 
     private static final String API_URL = "https://api.pexels.com/v1/search";
 

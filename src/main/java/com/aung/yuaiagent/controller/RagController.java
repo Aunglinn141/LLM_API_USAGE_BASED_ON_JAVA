@@ -1,4 +1,4 @@
-package com.aung.yuaiagent.demo.rag;
+package com.aung.yuaiagent.controller;
 
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.QuestionAnswerAdvisor;
