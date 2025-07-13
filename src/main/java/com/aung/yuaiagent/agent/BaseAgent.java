@@ -107,5 +107,5 @@ public abstract class BaseAgent {
      * @return
      */
 
-    protected abstract String step();
+    public abstract String step();
 }
