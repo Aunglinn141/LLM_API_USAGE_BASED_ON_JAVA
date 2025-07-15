@@ -94,4 +94,13 @@ class HappyAppTest {
         System.out.println(response);
         Assertions.assertNotNull(response);
     }
+
+//    @Test
+//    void doChatByStream() {
+//        String chatId = UUID.randomUUID().toString();
+//        String message = "give me some restaurant near Huaqiao University about 5 Km radius.";
+//        Flux<String>>Flux = happyApp.doChatByStream(message, chatId);
+//        System.out.println(response);
+//        Assertions.assertNotNull(response);
+//    }
 }

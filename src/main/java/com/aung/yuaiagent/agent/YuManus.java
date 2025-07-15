@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class YuManus extends ToolCallAgent {
 
-    public YuManus(ToolCallback[] availableTools, ChatModel chatModel, DashScopeChatModel dashscopeChatModel) {
+    public YuManus(ToolCallback[] availableTools, ChatModel dashscopeChatModel) {
         super(availableTools);
         this.setName("YuManus");
         String SYSTEM_PROMPT = """

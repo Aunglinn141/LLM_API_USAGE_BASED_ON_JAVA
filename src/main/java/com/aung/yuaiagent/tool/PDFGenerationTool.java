@@ -27,7 +27,7 @@ public class PDFGenerationTool {
                  Document document = new Document(pdf)) {
 
                 // setting chinese font
-                PdfFont font = PdfFontFactory.createFont("STSong-Light", "UniGB-UCS2-H");
+                PdfFont font = PdfFontFactory.createFont("STSongStd-Light", "UniGB-UCS2-H");
                 document.setFont(font);
 
                 Paragraph paragraph = new Paragraph(content);
