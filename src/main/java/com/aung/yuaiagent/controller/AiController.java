@@ -7,12 +7,11 @@ import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.tool.ToolCallback;
 import org.springframework.http.MediaType;
 import org.springframework.http.codec.ServerSentEvent;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 import reactor.core.publisher.Flux;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/ai")
 public class AiController {
@@ -38,7 +37,9 @@ public class AiController {
     }
 
     @GetMapping(value = "/happy_app/chat/sse2")
-    public Flux<ServerSentEvent<String>> doChatWithHappyAppSSE2 (String message, String chatID) {
+    public Flux<ServerSentEvent<String>> doChatWithHappyAppSSE2 (
+            @RequestParam("message") String message,
+            @RequestParam("chatId" ) String chatID) {
         return happyApp.doChatByStream(message, chatID)
                 .map(chunk-> ServerSentEvent.<String>builder()
                         .data(chunk).build());

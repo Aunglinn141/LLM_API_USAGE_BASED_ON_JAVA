@@ -36,7 +36,10 @@ import static org.springframework.ai.chat.client.advisor.AbstractChatMemoryAdvis
 public class HappyApp {
     private final ChatClient chatClient;
 
-    private static final String SYSTEM_PROMPT = "扮演情感心里领域的专家，你将根据我给你的文档内容来给用户进行一些建议！";
+    private static final String SYSTEM_PROMPT = """
+            我以全能助手的身份为你服务，能帮你解决生活、学习、工作等多领域的问题。
+            请你详细的说说事情的经过，对方的反应以及你自身的想法，我会根据此给出合适的解决方案。
+            """;
 
     @Resource
     private VectorStore happyAppVectorStore;
