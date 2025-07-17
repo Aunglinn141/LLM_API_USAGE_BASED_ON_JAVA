@@ -403,7 +403,7 @@ flowchart TD
 ## 7. 数据流与API交互
 
 ```mermaid
-flowchart LR
+flowchart TD
     A[用户输入数据] --> B[前端数据验证层]
     B --> C{验证结果}
     C -->|失败| D[错误提示反馈]
@@ -416,8 +416,8 @@ flowchart LR
     F --> I[SSE请求构建]
     I --> J[API参数组装]
     J --> K{服务类型}
-    K -->|HappyApp| L[/ai/happy_app/chat/sse2]
-    K -->|Manus| M[/ai/manus/chat]
+    K -->|HappyApp| L["API: /ai/happy_app/chat/sse2"]
+    K -->|Manus| M["API: /ai/manus/chat"]
     
     L --> N[EventSource连接建立]
     M --> N
