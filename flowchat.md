@@ -343,81 +343,59 @@ stateDiagram-v2
 
 ```mermaid
 flowchart TD
-    A[用户操作触发] --> B{操作类型识别}
+    A[用户操作] --> B{操作类型}
     
-    B -->|登录操作| C[登录验证处理]
-    B -->|消息发送| D[消息验证处理]
-    B -->|网络请求| E[SSE连接处理]
+    B -->|登录| C[登录验证]
+    B -->|发送消息| D[消息验证]
+    B -->|SSE连接| E[网络连接]
     
-    C --> F{登录验证结果}
-    F -->|验证成功| G[设置登录状态]
-    F -->|验证失败| H[显示登录错误]
-    H --> I["用户名或密码错误"]
-    I --> J[保持在登录页面]
-    J --> K[用户重新输入]
-    K --> C
+    C --> F{验证结果}
+    F -->|成功| G[进入应用]
+    F -->|失败| H[显示登录错误]
+    H --> I[用户重新输入]
+    I --> C
     
-    D --> L{消息内容验证}
-    L -->|空消息| M[显示"消息不能为空"]
-    L -->|消息过长| N[显示"消息长度超过1000字符"]
-    L -->|格式错误| O[显示"消息格式无效"]
-    L -->|验证通过| P[继续发送流程]
+    D --> J{消息有效性}
+    J -->|空消息| K[显示消息不能为空]
+    J -->|超长消息| L[显示消息过长]
+    J -->|有效消息| M[继续处理]
+    K --> N[保持输入焦点]
+    L --> N
+    N --> D
     
-    M --> Q[输入框保持焦点]
-    N --> Q
-    O --> Q
-    Q --> R[等待用户重新输入]
-    R --> D
+    E --> O{连接状态}
+    O -->|连接成功| P[正常通信]
+    O -->|连接失败| Q[SSE错误处理]
+    O -->|连接超时| R[超时错误处理]
     
-    E --> S{SSE连接状态}
-    S -->|连接成功| T[正常数据流处理]
-    S -->|连接失败| U[SSE连接错误处理]
-    S -->|连接超时| V[连接超时处理]
-    S -->|网络中断| W[网络异常处理]
+    Q --> S[关闭EventSource]
+    R --> S
+    S --> T[设置错误状态]
+    T --> U[显示错误消息]
+    U --> V{是否有部分数据}
+    V -->|有| W[保留部分回复并添加时间戳]
+    V -->|无| X[显示完整错误消息]
+    W --> Y[准备重试]
+    X --> Y
     
-    U --> X[关闭EventSource]
-    V --> X
-    W --> X
-    X --> Y[设置连接状态为ERROR]
-    Y --> Z[显示错误消息]
+    P --> Z[数据解析]
+    Z --> AA{解析结果}
+    AA -->|成功| BB[正常显示]
+    AA -->|失败| CC[JSON解析错误]
+    CC --> DD[使用纯文本显示]
+    DD --> BB
     
-    Z --> AA{是否接收到部分数据}
-    AA -->|是| BB[保留部分AI回复]
-    AA -->|否| CC[显示完整错误信息]
+    Y --> EE[等待用户重试]
+    EE --> B
     
-    BB --> DD[添加错误标识和时间戳]
-    CC --> EE["抱歉，连接服务器时发生错误"]
-    DD --> FF[用户可以选择重试]
-    EE --> FF
-    
-    T --> GG[数据解析处理]
-    GG --> HH{JSON解析结果}
-    HH -->|解析成功| II[正常显示内容]
-    HH -->|解析失败| JJ[JSON解析错误]
-    
-    JJ --> KK[尝试纯文本显示]
-    KK --> LL[记录解析错误日志]
-    LL --> MM[降级到基础文本显示]
-    MM --> II
-    
-    II --> NN[内容显示完成]
-    FF --> OO[准备重试机制]
-    NN --> OO
-    
-    OO --> PP{用户选择}
-    PP -->|重试| QQ[重新发起请求]
-    PP -->|放弃| RR[返回聊天状态]
-    QQ --> E
-    RR --> SS[等待新的用户输入]
-    
-    style H fill:#ffcdd2,stroke:#d32f2f,stroke-width:2px
-    style M fill:#ffcdd2,stroke:#d32f2f,stroke-width:2px
-    style N fill:#ffcdd2,stroke:#d32f2f,stroke-width:2px
-    style U fill:#ffcdd2,stroke:#d32f2f,stroke-width:2px
-    style V fill:#ffcdd2,stroke:#d32f2f,stroke-width:2px
-    style W fill:#ffcdd2,stroke:#d32f2f,stroke-width:2px
-    style JJ fill:#ffe0b2,stroke:#f57c00,stroke-width:2px
-    style II fill:#c8e6c9,stroke:#388e3c,stroke-width:2px
+    style H fill:#ffcdd2
+    style K fill:#ffcdd2
+    style L fill:#ffcdd2
+    style Q fill:#ffcdd2
+    style R fill:#ffcdd2
+    style CC fill:#ffe0b2
+    style BB fill:#c8e6c9
+
 ```
 
 ---
