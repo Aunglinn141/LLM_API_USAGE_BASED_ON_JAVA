@@ -629,7 +629,7 @@ mindmap
 ## 10. 部署与运维流程
 
 ```mermaid
-gitgraph
+gitGraph:
     commit id: "项目初始化"
     branch development
     checkout development
