@@ -13,4 +13,4 @@ RUN mvn clean package -DskipTests
 EXPOSE 8124
 
 ##运行应用
-CMD ["java", "-jar", "target/yu-ai-agent-0.0.1-SNAPSHOT.jar", "--spring.profiles.active=prod"]
+CMD ["java", "-jar", "app/target/yu-ai-agent-0.0.1-SNAPSHOT.jar", "--spring.profiles.active=prod"]
